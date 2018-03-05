@@ -1,0 +1,10 @@
+C:/tmp_project/BSDParser/input/01.txt
+C:/tmp_project/BSDParser/input/02.txt
+C:/tmp_project/BSDParser/input/03.txt
+C:/tmp_project/BSDParser/input/04.txt
+C:/tmp_project/BSDParser/input/05.txt
+C:/tmp_project/BSDParser/input/06.txt
+C:/tmp_project/BSDParser/input/07.txt
+C:/tmp_project/BSDParser/input/08.txt
+C:/tmp_project/BSDParser/input/09.txt
+C:/tmp_project/BSDParser/input/10.txt
