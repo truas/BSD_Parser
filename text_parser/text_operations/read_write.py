@@ -3,7 +3,7 @@ Created on Mar 5, 2018
 
 @author: Terry Ruas
 '''
-
+import argparse
 from os import listdir
 
 
@@ -35,12 +35,10 @@ def process_one_file(files, output_folder):
             for line in fin:
                 block = line.split('\t')
                 #block[0]:word; block[1]:synset; block[2]:offset; block[3]:pos - this has \n at the end
-                big_document.write(block[2] +'-'+ block[3].strip('\n') + '\t')
+                big_document.write(block[0] +'-'+ block[2] +'-'+ block[3].strip('\n') + '\t')
         big_document.write('\n')
     big_document.close()   
 #creates one file with each line being a document in the files list
-
-
 
 def process_many_files(files, input_folder, output_folder):
     names = listdir(input_folder)   
@@ -55,4 +53,11 @@ def process_many_files(files, input_folder, output_folder):
         big_document.write('\n')
         big_document.close()   
 #creates one file per document parsed - clean features -> block[x]          
-            
+ 
+def pathParser():
+    parser = argparse.ArgumentParser(description="Input and Output folder")
+    parser.add_argument('--input', type=str, required=True)
+    parser.add_argument('--output', type=str, required=True)
+    args = parser.parse_args()
+    print(args)
+    
