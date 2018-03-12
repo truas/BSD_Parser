@@ -4,8 +4,8 @@ Created on Mar 5, 2018
 @author: Terry Ruas
 
 Important: 
-1. Code developed on Eclipse, if compiled on command line need to set 'PYTHONPATH=..' before calling python3 ...
-2. input/output files need to be under the same directory as sys.path (currently text_parser/operations
+1. Code developed on Eclipse, if compiled on command line need to set 'PYTHONPATH=..' before calling python3 to avoid local-import problems
+2. input/output folder need to be under the same directory as sys.path (currently text_parser/text_operations)
 '''
 #import
 import os
