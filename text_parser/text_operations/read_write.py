@@ -4,18 +4,20 @@ Created on Mar 5, 2018
 @author: Terry Ruas
 '''
 import argparse
-from os import listdir
+import os
+
+
 
 
 #input-folder:
-doc_list = 'BSID_doclist.txt'
+doc_list_name = 'BSID_doclist.txt'
 corpus_bsd = 'bsd_corpus'
 
 
-def make_doc_list(folder_name):
+def doclist_singlefolder(folder_name):
     #read all files in a  folder with .txt format and makes a list of them
-    input_file_list = [folder_name+'/'+name for name in listdir(folder_name) if name.endswith('txt')]
-    doc_data_list = open(doc_list, 'w+')
+    input_file_list = [folder_name+'/'+name for name in os.listdir(folder_name) if name.endswith('txt')]
+    doc_data_list = open(doc_list_name, 'w+')
     
     #saving document list
     for file in input_file_list:
@@ -26,6 +28,17 @@ def make_doc_list(folder_name):
     print ('Found %s documents under the dir %s .....'%(len(input_file_list), folder_name))
     return (input_file_list)
 #creates list of documents in a folder
+
+def doclist_multifolder(folder_name):
+    input_file_list = []
+    for roots, dir, files in os.walk(folder_name):
+        for file in files:
+            file_uri = os.path.join(roots, file)
+            #file_uri = file_uri.replace("\\","/") #if running on windows           
+            if file_uri.endswith('txt'): input_file_list.append(file_uri)
+    return input_file_list
+#creates list of documents in many folders
+
 
 def process_one_file(files, output_folder):
     big_document = open(output_folder+'/'+corpus_bsd, 'w+')    
@@ -41,7 +54,7 @@ def process_one_file(files, output_folder):
 #creates one file with each line being a document in the files list
 
 def process_many_files(files, input_folder, output_folder):
-    names = listdir(input_folder)   
+    names = os.listdir(input_folder)   
     for index, file in enumerate(files):
         big_document = open(output_folder+'/'+names[index], 'w+')
         print('Processing %s' %file)

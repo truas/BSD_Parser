@@ -16,7 +16,7 @@ import argparse
 pydir_name = os.path.dirname(os.path.abspath(__file__))
 
 #python path definition
-sys.path.append(os.path.join(os.path.dirname(__file__), 'text_parser/text_operations'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 
 #local-imports
 from text_operations import read_write as rw
@@ -40,11 +40,12 @@ if __name__ == '__main__':
     output_folder = args.out_f
     
     #in/ou relative location
-    in_fname = os.path.join(pydir_name, input_folder)
-    ou_fname = os.path.join(pydir_name, output_folder)
+    in_fname = os.path.join(pydir_name, '../../'+input_folder)
+    ou_fname = os.path.join(pydir_name, '../../'+output_folder)
     
     
-    docs = rw.make_doc_list(in_fname)
+    #docs = rw.doclist_singlefolder(in_fname) #if there is one level -  folder/document.txt
+    docs = rw.doclist_multifolder(in_fname) #for single and multiple file-folder structure  - folder/../document.txt
     rw.process_one_file(docs, ou_fname)
     #rw.process_many_files(docs, in_fname, ou_fname) #in case you want one file per document
     print('Finished...')
