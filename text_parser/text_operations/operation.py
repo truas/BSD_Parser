@@ -4,8 +4,7 @@ Created on Mar 5, 2018
 @author: Terry Ruas
 
 Important: 
-1. Code developed on Eclipse, if compiled on command line need to set 'PYTHONPATH=..' before calling python3 to avoid local-import problems
-2. input/output folder need to be under the same directory as sys.path (currently text_parser/text_operations)
+1. input/output folder need to be under the same directory as text_parser package
 '''
 #import
 import os
@@ -16,7 +15,7 @@ import argparse
 pydir_name = os.path.dirname(os.path.abspath(__file__))
 
 #python path definition
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../')) #make sure to look over parent directory for local imports
 
 #local-imports
 from text_operations import read_write as rw
