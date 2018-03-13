@@ -2,13 +2,19 @@
 
 Takes direcotry with text (.txt) files with the following format:
 
-		token1 \t token2 \t token3 \token4 \n
+	token1 \t token2 \t token3 \token4 \n
 
 Example:
 		gray	Synset('gray.n.09')	11012474	n
 
 Produces one file which each line is an entire document with the desired token# (remember to strip the '\n' in the last token. One file per document is also possible (see commented line in 'operation.py')
 
+COMMAND LINE
+=============
+	python3 operation.py  --input <input_folder> --ouput <output_folder>
+
+UPDATES
+=======
 [2018-03-13] 
 1. No need to use PYTHONPATH=.. before compiling it. It was included in  'sys.path.'
 2. Code is now capable of reading text files dispersed over any multi directory structure
