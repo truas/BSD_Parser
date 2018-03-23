@@ -28,11 +28,11 @@ if __name__ == '__main__':
     parser.add_argument('--input', type=str, action='store', dest='in_f', metavar='<folder>', required=True, help='input folder to read document(s)')
     parser.add_argument('--output', type=str, action='store', dest='out_f', metavar='<folder>', required=True, help='outnput folder to write document(s)')
     args = parser.parse_args()
-    
+     
        
     #relative input/output folders - If you want to run it from an IDE
-    #input_folder = '/tmp_project/BSDParser/input'
-    #output_folder = '/tmp_project/BSDParser/output'
+    #in_fname= 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora'
+    #ou_fname = 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora'
     
     #COMMAND LINE  folder paths
     input_folder = args.in_f
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     
     #docs = rw.doclist_singlefolder(in_fname) #if there is one level -  folder/document.txt
     docs = rw.doclist_multifolder(in_fname) #for single and multiple file-folder structure  - folder/../document.txt
+    #rw.count_pos(docs, ou_fname)
     rw.process_one_file(docs, ou_fname)
     #rw.process_many_files(docs, in_fname, ou_fname) #in case you want one file per document
     print('Finished...')

@@ -67,6 +67,48 @@ def process_many_files(files, input_folder, output_folder):
         big_document.close()   
 #creates one file per document parsed - clean features -> block[x]          
  
+def count_pos(files, output_folder):
+    big_document = open(output_folder+'/'+'POS_statistics.txt', 'w+') 
+    N = 0
+    V = 0
+    A = 0
+    R = 0 
+    ndict = dict()
+    vdict = dict()
+    adict = dict()
+    rdict = dict() 
+    for file in files:
+        print('Processing %s' %file)
+        with open(file, 'r', encoding='utf-8') as fin:
+            for line in fin:
+                block = line.split('\t')
+                pos_tag = block[3].strip('\n')
+                pos_tok = block[0]
+                if pos_tag == 'n':
+                    N+=1
+                    ndict[pos_tok] = 0
+                elif pos_tag =='v':
+                    V+=1
+                    vdict[pos_tok] = 0
+                elif pos_tag =='r':
+                    R+=1
+                    rdict[pos_tok] = 0
+                elif pos_tag =='a' or pos_tag =='s':
+                    A+=1
+                    adict[pos_tok] = 0
+    big_document.write('Nouns: ' + str(N) + '\n' +
+                       'Verbs: ' + str(V) + '\n' +
+                       'Adverbs: ' + str(R) + '\n' +
+                       'Adjectives: ' + str(A) + '\n')
+    big_document.write('Unique POS \n'+
+                       'Nouns: ' + str(len(ndict.keys())) + '\n' +
+                       'Verbs: ' + str(len(vdict.keys())) + '\n' +
+                       'Adverbs: ' + str(len(rdict.keys())) + '\n' +
+                       'Adjectives: ' + str(len(adict.keys())) + '\n')
+    big_document.close()   
+#count the amount of items in each POS tag
+     
+ 
 def pathParser():
     parser = argparse.ArgumentParser(description="Input and Output folder")
     parser.add_argument('--input', type=str, required=True)
