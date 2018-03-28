@@ -31,8 +31,9 @@ if __name__ == '__main__':
      
        
     #relative input/output folders - If you want to run it from an IDE
-    #in_fname= 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora'
-    #ou_fname = 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora'
+    #in_fname= 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora/wikidump_dbsd_synsets_sp_20180120/output'
+    #ou_fname = 'C:/tmp_datasets/Wikipedia_Dump/2018_01_20/corpora/wikidump_dbsd_synsets_sp_20180120/'
+    
     
     #COMMAND LINE  folder paths
     input_folder = args.in_f
