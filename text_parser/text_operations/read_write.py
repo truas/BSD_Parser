@@ -69,6 +69,7 @@ def process_many_files(files, input_folder, output_folder):
  
 def count_pos(files, output_folder):
     big_document = open(output_folder+'/'+'POS_statistics.txt', 'w+') 
+    T = 0 #total
     N = 0
     V = 0
     A = 0
@@ -76,7 +77,8 @@ def count_pos(files, output_folder):
     ndict = dict()
     vdict = dict()
     adict = dict()
-    rdict = dict() 
+    rdict = dict()
+    sdict = dict() 
     for file in files:
         print('Processing %s' %file)
         with open(file, 'r', encoding='utf-8') as fin:
@@ -84,6 +86,11 @@ def count_pos(files, output_folder):
                 block = line.split('\t')
                 pos_tag = block[3].strip('\n')
                 pos_tok = block[0]
+                syn_tok = block[1]
+                
+                T +=1
+                sdict[syn_tok] = 0
+                
                 if pos_tag == 'n':
                     N+=1
                     ndict[pos_tok] = 0
@@ -96,11 +103,15 @@ def count_pos(files, output_folder):
                 elif pos_tag =='a' or pos_tag =='s':
                     A+=1
                     adict[pos_tok] = 0
-    big_document.write('Nouns: ' + str(N) + '\n' +
+                
+    big_document.write('Total: ' + str(T) + '\n' +
+                       'Nouns: ' + str(N) + '\n' +
                        'Verbs: ' + str(V) + '\n' +
                        'Adverbs: ' + str(R) + '\n' +
                        'Adjectives: ' + str(A) + '\n')
-    big_document.write('Unique POS \n'+
+    big_document.write('\n' + 
+                       'Unique POS \n'+
+                       'Synsets: ' + str(len(sdict.keys())) + '\n' +
                        'Nouns: ' + str(len(ndict.keys())) + '\n' +
                        'Verbs: ' + str(len(vdict.keys())) + '\n' +
                        'Adverbs: ' + str(len(rdict.keys())) + '\n' +

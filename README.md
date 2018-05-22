@@ -15,6 +15,9 @@ COMMAND LINE
 
 UPDATES
 =======
+[2018-05-22]
+1. Fix on counting function for statistics of corpus
+
 [2018-03-28]
 1. *count_pos(files, output_folder)* implemented - it calculates the amount (unique and in total) of words in the corpus considering the following POS: NOUN - n ; VERB - v; ADVERB - v; ADJECTIVE - a/s
 
