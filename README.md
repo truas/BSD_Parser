@@ -11,10 +11,14 @@ Produces one file which each line is an entire document with the desired token# 
 
 COMMAND LINE
 =============
-	python3 operation.py  --input <input_folder> --ouput <output_folder>
+	python3 operation.py  --input <input_folder> --ouput <output_folder/file>
 
 UPDATES
 =======
+[2018-12-01]
+1. Fixing relative path to combine multiple files into one
+2. Provide output file name too
+
 [2018-05-22]
 1. Fix on counting function for statistics of corpus
 

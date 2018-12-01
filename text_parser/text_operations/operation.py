@@ -13,9 +13,11 @@ import argparse
 
 #python module absolute path
 pydir_name = os.path.dirname(os.path.abspath(__file__))
-
+ppydir_name = os.path.dirname(pydir_name)
+ppydir_name = os.path.dirname(ppydir_name)
 #python path definition
-sys.path.append(os.path.join(os.path.dirname(__file__), '../')) #make sure to look over parent directory for local imports
+sys.path.append(os.path.join(os.path.dirname(__file__),os.path.pardir))
+
 
 #local-imports
 from text_operations import read_write as rw
@@ -40,8 +42,8 @@ if __name__ == '__main__':
     output_folder = args.out_f
     
     #in/ou relative location
-    in_fname = os.path.join(pydir_name, '../../'+input_folder)
-    ou_fname = os.path.join(pydir_name, '../../'+output_folder)
+    in_fname = os.path.join(ppydir_name , input_folder)
+    ou_fname = os.path.join(ppydir_name , output_folder)
     
     
     #docs = rw.doclist_singlefolder(in_fname) #if there is one level -  folder/document.txt

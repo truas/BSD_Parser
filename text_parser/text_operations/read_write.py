@@ -11,7 +11,7 @@ import os
 
 #input-folder:
 doc_list_name = 'BSID_doclist.txt'
-corpus_bsd = 'bsd_corpus'
+
 
 
 def doclist_singlefolder(folder_name):
@@ -41,9 +41,9 @@ def doclist_multifolder(folder_name):
 
 
 def process_one_file(files, output_folder):
-    big_document = open(output_folder+'/'+corpus_bsd, 'w+')    
-    for file in files:
-        print('Processing %s' %file)
+    big_document = open(output_folder, 'w+')    
+    for counter, file in enumerate(files):
+        if(counter%5000==0): print('Processing %s' %file)#cheking processing files
         with open(file, 'r', encoding='utf-8') as fin:
             for line in fin:
                 block = line.split('\t')
@@ -93,16 +93,16 @@ def count_pos(files, output_folder):
                 
                 if pos_tag == 'n':
                     N+=1
-                    ndict[pos_tok] = 0
+                    ndict[syn_tok] = 0
                 elif pos_tag =='v':
                     V+=1
-                    vdict[pos_tok] = 0
+                    vdict[syn_tok] = 0
                 elif pos_tag =='r':
                     R+=1
-                    rdict[pos_tok] = 0
+                    rdict[syn_tok] = 0
                 elif pos_tag =='a' or pos_tag =='s':
                     A+=1
-                    adict[pos_tok] = 0
+                    adict[syn_tok] = 0
                 
     big_document.write('Total: ' + str(T) + '\n' +
                        'Nouns: ' + str(N) + '\n' +
