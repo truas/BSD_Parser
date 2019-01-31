@@ -7,28 +7,6 @@ import argparse
 import os
 
 
-
-
-#input-folder:
-doc_list_name = 'BSID_doclist.txt'
-
-
-
-def doclist_singlefolder(folder_name):
-    #read all files in a  folder with .txt format and makes a list of them
-    input_file_list = [folder_name+'/'+name for name in os.listdir(folder_name) if name.endswith('txt')]
-    doc_data_list = open(doc_list_name, 'w+')
-    
-    #saving document list
-    for file in input_file_list:
-        doc_data_list.write(file +'\n')
-    doc_data_list.close() #raw-input list with absolute path
-    
-    #show the number of files in the directory
-    print ('Found %s documents under the dir %s .....'%(len(input_file_list), folder_name))
-    return (input_file_list)
-#creates list of documents in a folder
-
 def doclist_multifolder(folder_name):
     input_file_list = []
     for roots, dir, files in os.walk(folder_name):
@@ -36,18 +14,26 @@ def doclist_multifolder(folder_name):
             file_uri = os.path.join(roots, file)
             #file_uri = file_uri.replace("\\","/") #if running on windows           
             if file_uri.endswith('txt'): input_file_list.append(file_uri)
-    return input_file_list
+    return(input_file_list)
 #creates list of documents in many folders
 
+def get_folders(folder_root):
+    folders = []
+    for dirname, dirnames, filenames in os.walk(folder_root):
+        for subdirname in dirnames:
+            folders.append(os.path.join(dirname, subdirname))
+            
+    return folders
 
 def process_one_file(files, output_folder):
     big_document = open(output_folder, 'w+')    
     for counter, file in enumerate(files):
-        if(counter%5000==0): print('Processing %s' %file)#cheking processing files
-        with open(file, 'r', encoding='utf-8') as fin:
+        #if(counter%5000==0): print('Processing %s' %file)#checking processing files
+        print('Processing File: %s' %file)
+        with open(file, 'r', encoding='utf-8', errors = 'ignore') as fin:
             for line in fin:
                 block = line.split('\t')
-                #block[0]:word; block[1]:synset; block[2]:offset; block[3]:pos - this has \n at the end
+                #block[0] - word block[1] - synset block[2] offset block[3] - pos
                 big_document.write(block[0] +'#'+ block[2] +'#'+ block[3].strip('\n') + '\t')
         big_document.write('\n')
     big_document.close()   
@@ -62,7 +48,7 @@ def process_many_files(files, input_folder, output_folder):
             for line in fin:
                 block = line.split('\t')
                 #block[0]:word; block[1]:synset; block[2]:offset; block[3]:pos - this has \n at the end
-                big_document.write(block[1] + '\t') #big_document.write(block[2] +'-'+ block[3].strip('\n') + '\t')
+                big_document.write(block[0] +'#'+ block[2] +'#'+ block[3].strip('\n') + '\t') #big_document.write(block[2] +'-'+ block[3].strip('\n') + '\t')
         big_document.write('\n')
         big_document.close()   
 #creates one file per document parsed - clean features -> block[x]          
@@ -118,12 +104,4 @@ def count_pos(files, output_folder):
                        'Adjectives: ' + str(len(adict.keys())) + '\n')
     big_document.close()   
 #count the amount of items in each POS tag
-     
- 
-def pathParser():
-    parser = argparse.ArgumentParser(description="Input and Output folder")
-    parser.add_argument('--input', type=str, required=True)
-    parser.add_argument('--output', type=str, required=True)
-    args = parser.parse_args()
-    print(args)
     
