@@ -23,8 +23,7 @@ def doclist_multifolder(folder_name):
 
 def handleParser(src_files, dst_out, type, output_name="combined.txt"):
     combined = 'combined'
-    separate = 'separate'
-    
+    separate = 'separate'  
     if(type==combined):
         process_one_file(src_files, dst_out, output_name)
     elif(type==separate):
