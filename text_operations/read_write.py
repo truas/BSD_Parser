@@ -30,18 +30,6 @@ def handleParser(src_files, dst_out, type, output_name="combined.txt"):
         process_many_files(src_files, dst_out)
     else:
         print('No type was selected, exiting')
-    
-
-def read(file_name):
-    try:
-        f = open(file_name,'r', encoding= 'utf-8', errors="ignore")
-        content = f.read()
-        f.close()
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise ("problem reading file: " + file_name)
-    return(content)
-#reads the entire file in one shot  
 
 def mkdirnotex(filename, outputpath):
     print('File-READ_WRITE: ', os.path.dirname(os.path.abspath(__file__)))
@@ -166,4 +154,3 @@ def count_pos(files, output_folder):
                        'Adjectives: ' + str(len(adict.keys())) + '\n')
     big_document.close()   
 #count the amount of items in each POS tag
-    
