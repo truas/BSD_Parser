@@ -20,6 +20,6 @@ class commandLine:
         parser.add_argument('--input', type=str, action='store', dest='in_f', metavar='<folder>', required=True, help='input folder to read document(s)')
         parser.add_argument('--output', type=str, action='store', dest='on_f', metavar='<folder>', required=True, help='output folder to write document(s)')
         parser.add_argument('--ofname', type=str, action='store', dest='op_f', metavar='<file>', required=False, help='output file name')
-        parser.add_argument('--type', type=str, action='store', dest='type', metavar='<type>', required=True, help='type of parser to execute', choices=["combined", "separate"])        
+        parser.add_argument('--type', type=str, action='store', dest='type', metavar='<type>', required=True, help='type of parser to execute [separate,combined]', choices=["combined", "separate"])
         return(parser)
     #parameter list for command line

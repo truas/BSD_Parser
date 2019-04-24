@@ -17,10 +17,13 @@ COMMAND LINE
 - <--output>: output folder where the file(s) will be saved
 - <--ofname>: output file name [OPTIONAL]. If no name is provided `combined.txt` is used
 - <--type>: `--type combined` - All files are combined in one single 
-            `--type separated` - Each file is parsed separately
+            `--type separate` - Each file is parsed separately
 
 UPDATES
 =======
+[2019-04-24]
+1. Update on `type` variable values
+
 [2019-01-31]
 1. text_parser package removed
 2. flag `type` inserted. To combine all inputs in one single file  use `--type combined`, or for separate files `--type separated`
